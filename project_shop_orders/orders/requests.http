@@ -1,0 +1,223 @@
+POST http://localhost:8000/user/register
+Content-Type: application/json
+
+{
+    "first_name": "Evgeniy",
+    "last_name": "Yakshev",
+    "email": "bagration.box@mail.ru",
+    "password": "125agdugsi",
+    "company": "Евросеть",
+    "position": "Manager"
+}
+
+###
+
+POST http://localhost:8000/user/register
+Content-Type: application/json
+
+{
+    "first_name": "Nikolay",
+    "last_name": "Fedorov",
+    "email": "nikola@mail.ru",
+    "password": "123dugsryu12i",
+    "company": ""4"",
+    "position": "Manager",
+    "type": "shop"
+}
+
+###
+
+POST http://localhost:8000/user/register/confirm
+Content-Type: application/json
+
+{
+    "email": "bagration.box.ru",
+    "token": "677b3620f8b3044d8c0ee32dc8abcc39e90012f3"
+}
+
+###
+
+POST http://localhost:8000/user/login
+Content-Type: application/json
+
+{
+    "email": "pbk2007@inbox.ru",
+    "password": "12345agjhgdugsi"
+}
+
+###
+POST http://localhost:8000/user/passwordreset
+Content-Type: application/json
+
+{
+    "email": "maxim2@mail.ru"
+}
+
+###
+
+GET http://localhost:8000/user/details
+
+###
+
+POST http://localhost:8000/user/details
+Content-Type: application/json
+
+{
+    "password": "12345agjhgdugsi",
+    "company": "X8"
+}
+
+###
+GET http://localhost:8000/user/contact
+Authorization: Token 677b3620f8b3044d8c0ee32dc8abcc39e90012f3
+
+###
+GET http://localhost:8000/user/contacts
+
+###
+
+POST http://localhost:8000/user/contacts
+Content-Type: application/json
+
+{
+    "city": "Msk",
+    "street": "Lenina",
+    "house": "91",
+    "structure": "1",
+    "building": "A",
+    "apartment": "13",
+    "phone": "90000",
+    "user": 3
+}
+
+###
+
+PUT http://localhost:8000/user/contact
+Content-Type: application/json
+
+{
+    "city": "SPB",
+    "street": "Nevskiy",
+    "house": "90",
+    "structure": "2",
+    "building": "B",
+    "apartment": "13",
+    "phone": "8912345677",
+    "id": 2
+}
+
+###
+
+DELETE http://localhost:8000/user/contact
+Content-Type: application/json
+
+{
+    "items": "4"
+}
+
+###
+
+GET http://localhost:8000/shops
+
+###
+
+POST http://localhost:8000/shops
+Content-Type: application/json
+
+{
+    "name": "Technomarket",
+    "url": https://www.tehnomarket.store/,
+    "state": true,
+    "user": 7
+}
+
+###
+
+GET http://localhost:8000/categories
+
+###
+
+POST http://localhost:8000/categories
+Content-Type: application/json
+
+{
+    "name": "Flash-накопители",
+    "shops": [4]
+}
+
+###
+
+GET http://localhost:8000/products?shop_id=5&category_id=3
+
+###
+
+GET http://localhost:8000/partner/state
+
+###
+
+POST http://localhost:8000/partner/state
+Content-Type: application/json
+
+{
+    "state": "on"
+}
+
+###
+POST http://localhost:8000/partner/update
+Content-Type: application/json
+Authorization: Token 9a00c8424efdfbd620e17f89591d13b068c796c40abc1
+
+{
+    "url": "https://raw.githubusercontent.com/netology-code/pd-diplom/master/data/shop1.yaml"
+}
+
+###
+POST http://localhost:8000/cart
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 9a00c8424efdfbd620e17f89591d13b068c796c40abc1
+
+
+"items": [ { "external_id": 4, "quantity": 13 } ]
+
+
+
+###
+GET http://localhost:8000/cart
+Authorization: Token 9a00c8424efdfbd620e17f89591d13b068c796c40abc10
+
+###
+PUT http://localhost:8000/cart
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token b2395b613c581c322a833c9ff8661cbf8d248a70
+
+
+"items": [ {"id": 1, "quantity": 12} ]
+
+
+### 
+DELETE http://localhost:8000/cart
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token b2395b613c581c322a833c9ff8661cbf8d248a70
+
+
+"items": 2
+
+
+###
+POST http://localhost:8000/order
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 112ggt5677h7u7jk8k887jgg8k8k
+
+
+"id": 4,
+"contact": 4
+
+###
+GET http://localhost:8000/order
+Authorization: Token 677b3620f8b3044d8c0ee32dc8abcc39e90012f3
+
+
+###
+GET http://localhost:8000/partner/orders
+Authorization: Token 112ggt5677h7u7jk8k887jgg8k8k
+
