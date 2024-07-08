@@ -17,7 +17,8 @@ from .serializers import *
 from yaml import load as load_yaml, Loader
 from ujson import loads as load_json
 from distutils.util import strtobool
-
+from api.tasks import send_email, get_import
+from drf_spectacular.utils import extend_schema
 
 # Create your views here.
 
@@ -465,6 +466,13 @@ class CategoryView(generics.ListCreateAPIView):
     """ Класс просмотра списка категорий"""
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    @extend_schema(request=CategorySerializer, responses={200: CategorySerializer})
+    def get(self, request):
+        """ Метод возвращает список категорий. """
+
+        category_list = super().get(request)
+        return category_list
 
 
 class ProductView(APIView):

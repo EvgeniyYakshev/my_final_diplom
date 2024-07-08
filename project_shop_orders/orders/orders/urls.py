@@ -18,12 +18,15 @@ from django.urls import path, include
 from api.views import *
 from rest_framework import routers
 from django_rest_passwordreset.views import reset_password_confirm, reset_password_request_token
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 import debug_toolbar
 router = routers.SimpleRouter()
 router.register(r'user', UserViewSet)
 router.register(r'product', ProductViewSet)
 app_name = 'api'
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     path('admin/', admin.site.urls),
     path('user/register', RegisterUser.as_view()),
     path('api/v1/', include(router.urls)),
@@ -43,4 +46,9 @@ urlpatterns = [
     path('cart', CartView.as_view()),
     path('order', OrderView.as_view()),
     path("__debug__/", include("debug_toolbar.urls")),
+    # YOUR PATTERNS
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
